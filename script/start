@@ -7,8 +7,8 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-if [ -f "slack_api_token" ] && [ -z "$SLACK_API_TOKEN" ]; then
-	SLACK_API_TOKEN=`cat slack_api_token`
+if [ -f "config/slack_api_token" ] && [ -z "$SLACK_API_TOKEN" ]; then
+	SLACK_API_TOKEN=`cat config/slack_api_token`
 fi
 
 if [ -z "$SLACK_API_TOKEN" ]; then
@@ -17,8 +17,6 @@ if [ -z "$SLACK_API_TOKEN" ]; then
 fi
 
 echo "RUNNING PROGRAM BLEEP BLORP"
-
- # /\ /\ /\  THAT IS HOW TO SET ENV VARIABLES and HERE IS WHERE I SHOULD PUT THE SCRIPT TO RUN THE AUTH VARIABLE
 
 # boot the app and any other necessary processes.
 #foreman start -p 9393
