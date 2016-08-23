@@ -2,21 +2,24 @@
 
 At the top of the file there should be a short introduction and/ or overview that explains **what** the project is. This description should match descriptions added for package managers (Gemspec, package.json, etc.)
 
-## Code Example
-
-Show what the library does as concisely as possible, developers should be able to figure out **how** your project solves their problem by looking at the code example. Make sure the API you are showing off is obvious, and that your code is short and concise.
-
-## Motivation
-
-A short description of the motivation behind the creation and maintenance of the project. This should explain **why** the project exists.
-
 ## Installation
 
-This project requires that the rbenv Ruby
+DocumentationBot requires Ruby version 2.2.2. The easiest way to install Ruby is using a Ruby environment manager such as [RVM](http://rvm.io) or [rbenv](https://github.com/rbenv/rbenv), but the bot should work with any properly installed Ruby of the correct version.
 
-## API Reference
+Once Ruby has been installed, the project can be setup into an initial working state by using the following command:
 
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
+`script/setup`
+
+## Usage
+To start the bot, type:
+
+`script/start`
+
+**Note:** To start the bot you must provide a Slack API token. This can be done through the SLACK_API_TOKEN environment variable, e.g.
+
+`SLACK_API_TOKEN=abcd-1234567890-aBCDeFG script/start`
+
+Alternatively you can put the API token into a file named `slack_api_token` in the `config` directory. There is a file named `config/slack_api_token.example` which shows how this file should be formatted.
 
 ## Tests
 
