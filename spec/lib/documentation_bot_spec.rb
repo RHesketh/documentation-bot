@@ -16,29 +16,28 @@ describe DocumentationBot do
   end
 
   describe '#start!' do
+    let(:slack_double) {spy("Slack::RealTime::Client")}
+    let(:doc_bot) {DocumentationBot.new(slack_api_token) }
+
+    it 'should call client#start!' do 
+        expect(slack_double).to receive(:start!)
+        doc_bot.start!(slack_client: slack_double)
+    end
+
     describe ':test_authentication option' do
       it "Should perform an auth test when true" do 
-        slack_client_double = spy("Slack::RealTime::Client")
-        doc_bot = DocumentationBot.new(slack_api_token)
-
-        expect(slack_client_double).to receive(:auth_test)
-        doc_bot.start!(test_authentication: true, slack_client: slack_client_double)
+        expect(slack_double).to receive(:auth_test)
+        doc_bot.start!(test_authentication: true, slack_client: slack_double)
       end
 
       it "Should not perform an auth test when false" do
-        slack_client_double = spy("Slack::RealTime::Client")
-        doc_bot = DocumentationBot.new(slack_api_token)
-
-        expect(slack_client_double).not_to receive(:auth_test)
-        doc_bot.start!(test_authentication: false, slack_client: slack_client_double)
+        expect(slack_double).not_to receive(:auth_test)
+        doc_bot.start!(test_authentication: false, slack_client: slack_double)
       end
 
       it "Should not perform an auth test when not present" do 
-        slack_client_double = spy("Slack::RealTime::Client")
-        doc_bot = DocumentationBot.new(slack_api_token)
-
-        expect(slack_client_double).not_to receive(:auth_test)
-        doc_bot.start!(slack_client: slack_client_double)
+        expect(slack_double).not_to receive(:auth_test)
+        doc_bot.start!(slack_client: slack_double)
       end
     end
   end

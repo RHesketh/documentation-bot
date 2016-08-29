@@ -13,5 +13,7 @@ class DocumentationBot
 	def start!(options = {})
 		@client = options[:slack_client] || Slack::RealTime::Client.new
 		@client.auth_test if options[:test_authentication]
+
+		@client.start!
 	end
 end
