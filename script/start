@@ -7,6 +7,7 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+# Make sure the Slack API token has been set
 if [ -f "config/slack_api_token" ] && [ -z "$SLACK_API_TOKEN" ]; then
 	SLACK_API_TOKEN=`cat config/slack_api_token`
 fi
@@ -16,7 +17,5 @@ if [ -z "$SLACK_API_TOKEN" ]; then
 	exit 1
 fi
 
-echo "RUNNING PROGRAM BLEEP BLORP"
-
-# boot the app and any other necessary processes.
-#foreman start -p 9393
+# Start the app running
+SLACK_API_TOKEN=$SLACK_API_TOKEN bundle exec ruby start.rb
