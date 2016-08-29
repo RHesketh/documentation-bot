@@ -1,4 +1,3 @@
-require 'slack-ruby-client'
 require 'spec_helper'
 require File.join($ROOT, 'lib', 'documentation_bot')
 
