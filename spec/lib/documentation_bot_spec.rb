@@ -1,5 +1,4 @@
 require 'spec_helper'
-require File.join($ROOT, 'lib', 'documentation_bot')
 
 describe DocumentationBot do
   let(:slack_api_key) { "DUMMY-12345-dummy-67890-DMY" }
