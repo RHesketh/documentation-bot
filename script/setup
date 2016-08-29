@@ -7,6 +7,11 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+if ! gem spec bundler > /dev/null 2>&1; then
+	echo "==> Bundler installation was not detected, installing now via Rubygems"
+	gem install bundler -v "=1.12.5"
+fi
+
 script/bundle
 
 echo "==> DocumentationBot is ready to go!"
