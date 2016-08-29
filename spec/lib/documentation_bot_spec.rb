@@ -4,7 +4,7 @@ describe DocumentationBot do
   let(:slack_api_token) { "DUMMY-12345-dummy-67890-DMY" }
 
   describe "#new" do
-    it "errors if the Slack API key is passed in as first argument" do
+    it "errors if the Slack API key is not passed in as first argument" do
       expect{DocumentationBot.new}.to raise_error(ArgumentError)
     end
 
