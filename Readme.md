@@ -4,7 +4,7 @@ At the top of the file there should be a short introduction and/ or overview tha
 
 ## Installation
 
-DocumentationBot requires Ruby version 2.2.2. The easiest way to install Ruby is using a Ruby environment manager such as [RVM](http://rvm.io) or [rbenv](https://github.com/rbenv/rbenv), but the bot should work with any properly installed Ruby of the correct version.
+DocumentationBot requires Ruby version 2.2.2. The easiest way to install Ruby is using a Ruby environment manager such as [RVM](http://rvm.io) or [rbenv](https://github.com/rbenv/rbenv).
 
 Once Ruby has been installed, the project can be setup into an initial working state by using the following command:
 
