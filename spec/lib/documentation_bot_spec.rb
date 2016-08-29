@@ -19,7 +19,7 @@ describe DocumentationBot do
     let(:slack_double) {spy("Slack::RealTime::Client")}
     let(:doc_bot) {DocumentationBot.new(slack_api_token) }
 
-    it 'should call client#start!' do 
+    it 'should call Slack::RealTime::Client#start!' do 
         expect(slack_double).to receive(:start!)
         doc_bot.start!(slack_client: slack_double)
     end

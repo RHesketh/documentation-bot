@@ -1,0 +1,2 @@
+class RiLookup
+end
