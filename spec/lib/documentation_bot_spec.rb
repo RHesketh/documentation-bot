@@ -36,21 +36,6 @@ describe DocumentationBot do
         doc_bot.start!(slack_client: slack_double)
     end
 
-    it 'Should set a callback to trigger when we connect' do 
-        expect(slack_double).to receive(:on).with(:hello)
-        doc_bot.start!(slack_client: slack_double)
-    end
-
-    it 'Should set a callback to trigger when we join a channel' do 
-        expect(slack_double).to receive(:on).with(:channel_joined)
-        doc_bot.start!(slack_client: slack_double)
-    end
-
-    it 'Should set a callback to trigger when we leave a channel' do 
-        expect(slack_double).to receive(:on).with(:channel_left)
-        doc_bot.start!(slack_client: slack_double)
-    end
-
     describe ':test_authentication option' do
       it "Should perform an auth test when true" do 
         expect(slack_double).to receive(:auth_test)
