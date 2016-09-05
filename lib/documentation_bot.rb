@@ -1,7 +1,7 @@
 require 'slack-ruby-client'
 
 class DocumentationBot
-	def initialize(slack_api_token)
+	def initialize(slack_api_token, options = {})
 		raise ArgumentError.new("A Slack API token must be specified as the first parameter") if slack_api_token.to_s.empty?
 
 		# Configures the ENV token globally

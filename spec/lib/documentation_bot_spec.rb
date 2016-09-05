@@ -13,14 +13,41 @@ describe DocumentationBot do
         doc_bot = DocumentationBot.new(slack_api_token)
       }.not_to raise_error
     end
+
+    it "does not error if on option hash is passed in as an argument" do
+      expect{
+        doc_bot = DocumentationBot.new(slack_api_token, {output: nil})
+      }.not_to raise_error
+    end
+
+    it "does not error if an option hash is not passed in as an argument" do
+      expect{
+        doc_bot = DocumentationBot.new(slack_api_token)
+      }.not_to raise_error
+    end
   end
 
   describe '#start!' do
     let(:slack_double) {spy("Slack::RealTime::Client")}
     let(:doc_bot) {DocumentationBot.new(slack_api_token) }
 
-    it 'should call Slack::RealTime::Client#start!' do 
+    it 'should start the slack client going' do 
         expect(slack_double).to receive(:start!)
+        doc_bot.start!(slack_client: slack_double)
+    end
+
+    it 'Should set a callback to trigger when we connect' do 
+        expect(slack_double).to receive(:on).with(:hello)
+        doc_bot.start!(slack_client: slack_double)
+    end
+
+    it 'Should set a callback to trigger when we join a channel' do 
+        expect(slack_double).to receive(:on).with(:channel_joined)
+        doc_bot.start!(slack_client: slack_double)
+    end
+
+    it 'Should set a callback to trigger when we leave a channel' do 
+        expect(slack_double).to receive(:on).with(:channel_left)
         doc_bot.start!(slack_client: slack_double)
     end
 
