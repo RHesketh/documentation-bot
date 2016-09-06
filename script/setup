@@ -7,6 +7,9 @@ set -e
 
 cd "$(dirname "$0")/.."
 
+echo "==> Installing ri documentation"
+gem rdoc --all --ri --no-rdoc
+
 if ! gem spec bundler > /dev/null 2>&1; then
 	echo "==> Bundler installation was not detected, installing now via Rubygems"
 	gem install bundler -v "=1.12.5"
