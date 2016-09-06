@@ -35,7 +35,7 @@ class DocumentationBot
 	private 
 
 	def channels_i_am_a_member_of
-		@client.channels.map{|a| a[1]}.select{|c| c["is_member"]}.map{|c| c["is_member"]}
+		@client.channels.map{|a| a[1]}.select{|c| c["is_member"]}.map{|c| c["name"]}
 	end
 
 	def channel_names_with_hash(channel_names)
