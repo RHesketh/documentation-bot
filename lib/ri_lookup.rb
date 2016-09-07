@@ -10,6 +10,6 @@ class RiLookup
 	private
 
 	def strip_weird_characters(input)
-		return input.gsub(/[^A-Za-z\d:_.!]/, "")
+		return input.gsub(/[^A-Za-z\d:_.!#]/, "")
 	end
 end
