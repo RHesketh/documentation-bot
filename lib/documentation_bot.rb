@@ -39,8 +39,8 @@ class DocumentationBot
 			raw_output = @ri_lookup.find(command)
 			clean_output = @slack_parser.convert raw_output
 			clean_output = "Sorry, couldn't find any information about '#{command}'." if clean_output.empty?
-
-			@client.message channel: message_data.channel, text: clean_output
+			
+			@client.message channel: message_data["channel"], text: clean_output
 		end
 
 		@client.start!

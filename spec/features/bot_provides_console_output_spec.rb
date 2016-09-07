@@ -26,7 +26,7 @@ describe "Bot provides console output" do
 	end
 
 	it 'Announces that it has left a slack channel' do	
-		fake_leave_event = OpenStruct.new(:channel => "DUMMYDUMMY1")
+		fake_leave_event = OpenStruct.new(:channel => "CDUMMYDUMMY1")
 		fake_slack.execute(:channel_left, fake_leave_event)
 		
 		expect(output.string.include?("left channel")).to be true
