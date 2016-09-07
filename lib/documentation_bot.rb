@@ -36,10 +36,13 @@ class DocumentationBot
 
 			command = get_command_from_incoming_message message_data["text"]
 
-			raw_output = @ri_lookup.find(command)
-			clean_output = @slack_parser.convert raw_output
-			clean_output = "Sorry, couldn't find any information about '#{command}'." if clean_output.empty?
-			
+			case command.downcase
+			when "help"
+				clean_output = help_information
+			else
+				clean_output = handle_ri_lookup(command)
+			end
+
 			@client.message channel: message_data["channel"], text: clean_output
 		end
 
@@ -47,6 +50,19 @@ class DocumentationBot
 	end
 
 	private 
+	def handle_ri_lookup(command)
+		raw_output = @ri_lookup.find(command)
+		clean_output = @slack_parser.convert raw_output
+		clean_output = "Sorry, couldn't find any information about '#{command}'." if clean_output.empty?
+
+		return clean_output
+	end
+
+	def help_information
+		"*Usage:* 	`#{@client.self.name} [Ruby class/method]`\n" +
+		"			e.g. `#{@client.self.name} Array`"
+	end
+
 	def get_command_from_incoming_message(message)
 		output = message.gsub(/^\<\@#{@client.self.id}\> /, "")	# Strip our userid if it's in there
 		output = output.gsub(/^#{@client.self.name} /, "") 		# Strip our username if it's in there

@@ -38,7 +38,7 @@ class FakeSlackClient
 
 	def channels
 		{
-			"DUMMYDUMMY1" => {
+			"CDUMMYDUMMY1" => {
 				"name" => "xyztestxyz", "is_member"=>true
 			}
 		}
