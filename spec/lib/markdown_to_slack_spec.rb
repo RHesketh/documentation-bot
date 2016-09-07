@@ -4,7 +4,7 @@ describe MarkdownToSlack do
 	let(:converter) { MarkdownToSlack.new }
 
 	describe "#convert" do
-		it "returns en empty string when given an nil" do 
+		it "returns en empty string when given a nil" do 
 			expect(converter.convert(nil)).to eq ""
 		end
 
@@ -40,7 +40,7 @@ describe MarkdownToSlack do
 			expect(converter.convert(test_string)).to eq expected_string
 		end
 
-		it "marks horizontal rules more visible" do
+		it "makes horizontal rules more visible" do
 			test_string 	= "hello this is some nonsense\n---\nand now back to the nonsense"
 			expected_string = "hello this is some nonsense\n~--------------------------------------------------------------------------------~\nand now back to the nonsense"
 

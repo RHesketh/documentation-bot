@@ -31,8 +31,8 @@ class DocumentationBot
 		end
 
 		@client.on :message do |message_data|
-			next unless message_is_addressed_to_the_bot? message_data
 			next if message_originates_from_the_bot? message_data
+			next unless message_is_addressed_to_the_bot? message_data
 
 			command = get_command_from_incoming_message message_data["text"]
 
