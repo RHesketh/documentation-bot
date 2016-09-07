@@ -6,10 +6,10 @@ describe "Bot provides console output" do
 	let(:output) {StringIO.new}
 	let(:slack_api_token) { "DUMMY-12345-dummy-67890-DMY" }
 	let(:fake_slack) { FakeSlackClient.new }
-	let(:doc_bot) {DocumentationBot.new(slack_api_token, {output: output})}
+	let(:doc_bot) {DocumentationBot.new(slack_api_token, {output: output, slack_client: fake_slack})}
 
 	before(:each) do
-		doc_bot.start!(output: output, slack_client: fake_slack)
+		doc_bot.start!
 	end
 
 	it 'Announces that it has connected to a slack team' do	
