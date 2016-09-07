@@ -25,5 +25,26 @@ describe MarkdownToSlack do
 
 			expect(converter.convert(test_string)).to eq expected_string
 		end
+
+		it "cleans up the display of class methods" do
+			test_string 	= "hello this is some nonsense\n# Class methods:\n\n    a method\n    another method\n\nand now back to the nonsense"
+			expected_string = "hello this is some nonsense\n*Class methods:*\na method, another method\n\nand now back to the nonsense"
+
+			expect(converter.convert(test_string)).to eq expected_string
+		end
+
+		it "cleans up the display of instance methods" do
+			test_string 	= "hello this is some nonsense\n# Instance methods:\n\n    a method\n    another method\n\nand now back to the nonsense"
+			expected_string = "hello this is some nonsense\n*Instance methods:*\na method, another method\n\nand now back to the nonsense"
+
+			expect(converter.convert(test_string)).to eq expected_string
+		end
+
+		it "marks horizontal rules more visible" do
+			test_string 	= "hello this is some nonsense\n---\nand now back to the nonsense"
+			expected_string = "hello this is some nonsense\n~--------------------------------------------------------------------------------~\nand now back to the nonsense"
+
+			expect(converter.convert(test_string)).to eq expected_string
+		end
 	end
 end
