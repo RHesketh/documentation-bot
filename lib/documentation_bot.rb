@@ -1,6 +1,33 @@
 require 'slack-ruby-client'
 
+# Public: Watch Slack channels and Direct Messages for requests to look up
+# Ruby documentation. Will stay running once #start! is called.
+#
+# Examples
+#   slack_token = 'abc123'
+#   docbot = DocumentationBot.new(slack_token)
+#   docbot.start!
 class DocumentationBot
+	# Public: Create a new DocumentationBot
+	#
+	# slack_api_token - a String containing the Slack API token the bot should
+	#                   use to connect. A valid token from Slack is needed.
+	# options - A Hash containing optional replacements for internal services 
+	#           used by the bot (default: {})
+	#           :output       - An IO object that should receive the debug 
+	#                           output. Defaults to STDOUT (optional).
+	#           :slack_client - The Slack RealTime API Client that will be
+	#                           communicating with Slack's API (optional).
+	#           :ri_lookup    - The lookup service that communicates with the
+	#                           `ri` command-line tool (optional).
+	#           :parser       - A parser that takes Markdown and converts it to
+	#                           the format used by Slack (optional).
+	#
+	# Examples
+	#   DocumentationBot.new('abc123')
+	#
+	# 	my_output = StringIO.new
+	#   DocumentationBot.new('abc123', output: my_output)
 	def initialize(slack_api_token, options = {})
 		raise ArgumentError.new("A Slack API token must be specified as the first parameter") if slack_api_token.to_s.empty?
 		Slack.configure do |config|
@@ -13,6 +40,17 @@ class DocumentationBot
 		@slack_parser = options[:parser]	|| MarkdownToSlack.new
 	end	
 
+	# Public: Start the bot running and connect to Slack.
+	#
+	# options - a Hash containing options that change the bot's behaviour
+	#           :test_authentication - Call to Slack's test authentication
+	#                                  API to check credentials (optional).
+	# Examples
+	#
+	#   docbot = DocumentationBot.new('abc123')
+	#   docbot.start!
+	#
+	# Does not return, will execute indefinitely once called.
 	def start!(options = {})
 		@client.auth_test if options[:test_authentication]
 
@@ -31,6 +69,7 @@ class DocumentationBot
 		end
 
 		@client.on :message do |message_data|
+			next if message_data["text"].to_s.empty?
 			next if message_originates_from_the_bot? message_data
 			next unless message_is_addressed_to_the_bot? message_data
 
@@ -87,7 +126,7 @@ class DocumentationBot
 	end
 
 	def username_was_mentioned?(message)
-		return message =~ /^#{@client.self.name}/
+		return message.downcase =~ /^#{@client.self.name.downcase}/
 	end
 
 	def message_is_direct_message(channel)

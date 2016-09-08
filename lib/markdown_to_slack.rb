@@ -1,4 +1,33 @@
+# Internal: Converts the contents of a String containing Markdown into a format
+# suitable for output into a Slack channel.
 class MarkdownToSlack
+	# Internal: Reformats some Markdown elements into a Slack equivalent.
+	# Headers and subheaders will be converted into bold text, horizontal
+	# rules are converted into a long line of dashes. 
+	#
+	# Long lists of methods outputted by `ri` are condensed into a 
+	# comma-seperated list. Lists of class methods are considered to always 
+	# have the following format (newlines explicitly shown for clarity):
+	#   "Class methods:\n  (or "Instance methods:"])
+	#   \n
+	#       [method]\n
+	#		[method]\n
+	#   \n"
+	#
+	# input - A String containing the Markdown to be reformatted.
+	#
+	# Examples
+	#
+	#   convert("# Here is a header")
+	#   # => "*Here is a header*"
+	#
+	#   convert("### Here is a subheader")
+	#   # => "*Here is a subheader*"
+	#
+	# 	convert("Class methods:\n\n    count\n    new\n    reset\n\n")
+	#   # => "Class methods:\ncount, new, reset\n\n"
+	#
+	# Returns a String containing the modified text.
 	def convert(input)
 		output = input.to_s.lines.map do |line|
 			modified_line = line
