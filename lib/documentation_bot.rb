@@ -14,7 +14,7 @@ class DocumentationBot
 	#                   use to connect. A valid token from Slack is needed.
 	# options - A Hash containing optional replacements for internal services 
 	#           used by the bot (default: {})
-	#           :output       - An IO object that should receive the debug 
+	#           :output       - An IO object that receives all of the debug
 	#                           output. Defaults to STDOUT (optional).
 	#           :slack_client - The Slack RealTime API Client that will be
 	#                           communicating with Slack's API (optional).
