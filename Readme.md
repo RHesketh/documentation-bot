@@ -49,7 +49,7 @@ All code, text and images found in this repository are licensed using the [Unlic
 ## Development Overview
 ### Design decisions
 #### Fake Slack Client
-I decided to write a fake Slack client for test purposes as it gave me a simple way to test the #on event handling hooks being passed to the Slack client gem. Instead of running a real Slack API client or relying on third-party test solutions such as VCR the fake Slack client allows us to store and execute event blocks as necessary.
+I decided to write a fake Slack client for test purposes as it gave me a simple way to test code in event handler hooks without having to run a real Slack API client or rely on third-party test solutions such as VCR. The fake Slack client stores command blocks and can execute them later arbitrarily. This allows my tests to do things like test the code which triggers when the :channel_joined event fires without joining a real channel in Slack.
 
 #### Use of `%x()` to execute `ri`
 I wanted to make sure that arbitrary commands could not be passed through to the shell using backticks. As well as being sanitised by the `#strip_weird_characters` method, using `%x()` ensures that anything passed to the shell has been broken into pieces rather than executed directly as given.
