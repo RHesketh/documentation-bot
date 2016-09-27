@@ -1,4 +1,4 @@
 ---
-BUNDLE_PATH: "/Users/Rob/dev/gohiring-code-test/vendor/gems"
+BUNDLE_PATH: vendor/gems
 BUNDLE_WITHOUT: production
 BUNDLE_DISABLE_SHARED_GEMS: true
