@@ -16,7 +16,7 @@ Start the bot with:
 
 `script/start`
 
-The bot will automatically join your Slack team and sit waiting for commands. The bot will repond when sent a Direct Message, but if you `/invite` it to a channel then it will also respond to its own username.
+The bot will automatically join your Slack team and sit waiting for commands. The bot will respond when sent a Direct Message, but if you `/invite` it to a channel then it will also respond to its own username.
 
 **Note:** To start the bot you must provide a Slack API token. This can be done through the SLACK_API_TOKEN environment variable, e.g.
 
